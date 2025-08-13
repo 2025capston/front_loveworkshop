@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBED"
+    tools:context=".choose_km_age">
+
+    <SeekBar
+        android:id="@+id/ageseekBar"
+        android:layout_width="367dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="28dp"
+        android:max="10"
+        android:progress="0"
+        android:progressDrawable="@drawable/seekbar_seekbar2"
+        android:thumb="@drawable/seekbar_thumb2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:fontFamily="@font/scd5"
+        android:text="이상형을 설정해볼 차례예요"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/scd5"
+        android:text="상대의 나이"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="301dp" />
+
+    <SeekBar
+        android:id="@+id/ageseekBar2"
+        android:layout_width="367dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="35dp"
+        android:max="10"
+        android:progress="0"
+        android:progressDrawable="@drawable/seekbar_seekbar2"
+        android:thumb="@drawable/seekbar_thumb2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ageseekBar" />
+
+    <ImageView
+        android:id="@+id/next4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/arrow" />
+
+    <TextView
+        android:gravity="center|end"
+        android:id="@+id/showkm"
+        android:layout_width="339dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/pic_layout"
+        android:fontFamily="@font/scd5"
+        android:text="      "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ageseekBar2" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="12dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toStartOf="@+id/showkm"
+        app:layout_constraintTop_toBottomOf="@+id/ageseekBar2"
+        app:srcCompat="@drawable/pink_nemo" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="12dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/showage"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@drawable/pink_nemo" />
+
+    <TextView
+        android:gravity="center|end"
+        android:id="@+id/showage"
+        android:background="@drawable/pic_layout"
+        android:layout_width="339dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:text="      "
+        android:fontFamily="@font/scd5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showkm" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>   

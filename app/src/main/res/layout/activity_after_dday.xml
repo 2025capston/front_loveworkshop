@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBED"
+    tools:context=".dayN_mission">
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="600dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pret" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="346dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/whitebox"
+        android:fontFamily="@font/scd5"
+        android:gravity="center"
+        android:text="이상형과의 만남은 어땠나요?"
+        android:textAlignment="center"
+        android:textColor="@color/custom_brown"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView_dday" />
+
+    <TextView
+        android:id="@+id/textView_dday"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/eclipse"
+        android:fontFamily="@font/alex"
+        android:gravity="center"
+        android:text="D - Day"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/heisbas"
+        android:layout_width="225dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/no_btn"
+        android:fontFamily="@font/scd5"
+        android:text="매칭 끊기"
+        android:textColor="@color/custom_brown"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ok_meethim" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ok_meethim"
+        android:layout_width="225dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/yes_btn"
+        android:fontFamily="@font/scd5"
+        android:text="매칭 유지"
+        android:textColor="@color/custom_brown"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/second_nav_menu"
+        app:backgroundTint="#FBE2DE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

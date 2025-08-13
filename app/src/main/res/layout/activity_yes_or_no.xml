@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".yes_or_no">
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="355dp"
+        android:layout_height="444dp"
+        android:layout_marginTop="121dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whitebox" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/scd5"
+        android:lineSpacingExtra="15dp"
+        android:text="매칭 유지 여부\n\n이상형이 아니었나요?\n매칭 해지를 누르면\n홈 화면으로 돌아가\n새로운 이상형을\n찾을 수 있어요."
+        android:textAlignment="center"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView18" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/inginging"
+        android:layout_width="156dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/yes_btn"
+        android:fontFamily="@font/scd5"
+
+        android:text="매칭 유지"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/idontlikehim"
+        android:layout_width="156dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/no_btn"
+        android:fontFamily="@font/scd5"
+        android:text="매칭 해지"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

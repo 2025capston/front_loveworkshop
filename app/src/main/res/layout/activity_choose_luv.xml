@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBED"
+    tools:context=".choose_luv">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/hetero"
+        android:layout_width="339dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="52dp"
+        android:textAlignment="textEnd"
+        android:fontFamily="@font/scd5"
+        android:textSize="18dp"
+        android:background="@drawable/pic_layout"
+        android:text="이성애자       "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="12dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/pink_nemo"
+        android:text="  "
+        app:layout_constraintEnd_toStartOf="@+id/hetero"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="12dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/pink_nemo"
+        android:text="  "
+        app:layout_constraintEnd_toStartOf="@+id/hetero"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="12dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="188dp"
+        android:background="@drawable/pink_nemo"
+        android:text="  "
+        app:layout_constraintEnd_toStartOf="@+id/hetero"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/homo"
+        android:layout_width="339dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:textAlignment="textEnd"
+        android:fontFamily="@font/scd5"
+        android:textSize="18dp"
+        android:background="@drawable/pic_layout"
+        android:text="동성애자       "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hetero" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bi"
+        android:layout_width="339dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:textAlignment="textEnd"
+        android:fontFamily="@font/scd5"
+        android:textSize="18dp"
+        android:background="@drawable/pic_layout"
+        android:text="양성애자       "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homo" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="67dp"
+        android:fontFamily="@font/scd3"
+        android:text="나에 대해 알려주세요"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/scd5"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        android:text="나의 성지향성을 선택해 주세요" />
+
+    <ImageView
+        android:id="@+id/next3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/arrow" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
