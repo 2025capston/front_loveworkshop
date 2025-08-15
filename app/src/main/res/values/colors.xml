@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="start_color">#ffffff</color>
+    <color name="end_color">#FF9289</color>
+    <color name="naver_color">#2db400</color>
+    <color name="kakao_color">#fff000</color>
+    <color name="custom_brown">#7c5147</color>
+    <color name="background">#FBFBED</color>
+    <color name="button_selected_color">#FF4081</color> <!-- 원하는 색상으로 변경 가능 -->
+</resources>

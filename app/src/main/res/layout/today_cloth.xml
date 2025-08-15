@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#ffffff"
+    android:gravity="center">
+
+    <!-- 다이얼로그 제목 -->
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*상대의 옷차림*"
+        android:textSize="30sp"
+        android:fontFamily="@font/scd6"
+        android:textColor="#7C5147"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/scd5"
+        android:textSize="18sp"
+        android:textColor="#7C5147"
+        android:text="상의 색: 검은색 \n하의 색: 회색 \n신발 색: 검은색 "
+        android:layout_marginBottom="20dp"
+        />
+
+    <!-- "확인" 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/check_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:fontFamily="@font/scd5"
+        android:textSize="15dp"
+        android:textColor="@color/custom_brown"
+        android:background="@drawable/button_gra"/>
+
+</LinearLayout>

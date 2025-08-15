@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_luv"
+        android:icon="@drawable/menu_heart"
+        android:title="luv"
+        android:iconTint="@color/custom_brown"/>
+    <item
+        android:id="@+id/nav_message"
+        android:icon="@drawable/menu_dm"
+        android:title="message"
+
+        android:iconTint="@color/custom_brown"/>
+
+    <item
+        android:id="@+id/nav_alarm"
+        android:icon="@drawable/menu_alarm"
+        android:title="alarm"
+        android:iconTint="@color/custom_brown"/>
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/menu_person"
+        android:title="profile"
+        android:iconTint="@color/custom_brown"/>
+
+</menu>

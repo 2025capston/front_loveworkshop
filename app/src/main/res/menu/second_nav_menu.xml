@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_mission"
+        android:icon="@drawable/menu_heart"
+        android:title="mission"
+        android:iconTint="@color/custom_brown"/>
+    <item
+        android:id="@+id/nav_promise"
+        android:icon="@drawable/menu_dm"
+        android:title="promise"
+
+        android:iconTint="@color/custom_brown"/>
+
+    <item
+        android:id="@+id/nav_alarm2"
+        android:icon="@drawable/menu_alarm"
+        android:title="alarm2"
+        android:iconTint="@color/custom_brown"/>
+
+    <item
+        android:id="@+id/nav_profile2"
+        android:icon="@drawable/menu_person"
+        android:title="profile2"
+        android:iconTint="@color/custom_brown"/>
+
+</menu>

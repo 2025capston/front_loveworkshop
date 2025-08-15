@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RomanceSample"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <meta-data
+            android:name="com.kakao.vectormap.KAKAO_MAP_KEY"
+            android:value="${KAKAO_MAP_KEY}" />
+
+        <activity
+            android:name=".loading"
+            android:exported="false" />
+        <activity
+            android:name=".choose_home"
+            android:exported="false" />
+        <activity
+            android:name=".Day1"
+            android:exported="false" />
+        <activity
+            android:name=".Day2"
+            android:exported="false" />
+        <activity
+            android:name=".check_list_of_people"
+            android:exported="false" />
+        <activity
+            android:name=".BadPeople"
+            android:exported="false" />
+        <activity
+            android:name=".LastMission"
+            android:exported="false" />
+        <activity
+            android:name=".yes_or_no"
+            android:exported="false" />
+        <activity
+            android:name=".show_profile"
+            android:exported="false" />
+
+        <meta-data
+            android:name="org.osmdroid.config"
+            android:value="osmdroid" />
+
+        <activity
+            android:name=".After_dday"
+            android:exported="false" />
+        <activity
+            android:name=".d_day"
+            android:exported="false" />
+        <activity
+            android:name=".dayN_mission"
+            android:exported="false" />
+        <activity
+            android:name=".match_complete"
+            android:exported="false" />
+        <activity
+            android:name=".wait_day3"
+            android:exported="false" />
+        <activity
+            android:name=".wait_match"
+            android:exported="false" />
+        <activity
+            android:name=".choose_place_m"
+            android:exported="false" />
+        <activity
+            android:name=".MapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".choose_place"
+            android:exported="false" />
+        <activity
+            android:name=".choose_day"
+            android:exported="false" />
+        <activity
+            android:name=".show_matchPeople"
+            android:exported="false" />
+        <activity
+            android:name=".SearchingForYou"
+            android:exported="false" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".show_clones"
+            android:exported="false" />
+        <activity
+            android:name=".choose_clone"
+            android:exported="false" />
+        <activity
+            android:name=".charming_point"
+            android:exported="false" />
+        <activity
+            android:name=".check_camera"
+            android:exported="false" />
+        <activity
+            android:name=".choose_km_age"
+            android:exported="false" />
+        <activity
+            android:name=".choose_bdypro"
+            android:exported="false" />
+        <activity
+            android:name=".choose_birth"
+            android:exported="false" />
+        <activity
+            android:name=".choose_luv"
+            android:exported="false" />
+        <activity
+            android:name=".choose_sex"
+            android:exported="false" />
+        <activity
+            android:name=".signin"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:exported="false" />
+        <activity
+            android:name=".start"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
