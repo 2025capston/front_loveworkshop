@@ -2,12 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
-<<<<<<< HEAD
-=======
 def properties = new Properties()
 properties.load(new FileInputStream(rootProject.file("local.properties")))
 
->>>>>>> 68801c8 (add Map api)
 android {
     namespace 'com.example.romancesample'
     compileSdk 35
@@ -20,10 +17,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-<<<<<<< HEAD
-    }
-
-=======
 
         ndk {
             abiFilters.add("arm64-v8a")
@@ -39,7 +32,6 @@ android {
     buildFeatures {
         buildConfig = true
     }
->>>>>>> 68801c8 (add Map api)
     buildTypes {
         release {
             minifyEnabled false
@@ -50,12 +42,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-<<<<<<< HEAD
-=======
     buildFeatures {
         compose = true
     }
->>>>>>> 68801c8 (add Map api)
 }
 
 dependencies {
@@ -68,13 +57,9 @@ dependencies {
 // ML Kit Face Detection
     implementation 'com.google.mlkit:face-detection:16.1.5'
     implementation 'com.google.android.material:material:1.9.0'
-<<<<<<< HEAD
-
-=======
 //Kakao map
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.kakao.maps.open:android:2.12.8'
->>>>>>> 68801c8 (add Map api)
 
     // app/build.gradle
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
