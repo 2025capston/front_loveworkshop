@@ -9,6 +9,12 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+<<<<<<< HEAD
+=======
+        maven {
+            url "https://devrepo.kakao.com/nexus/repository/kakaomap-releases/"
+        }
+>>>>>>> 68801c8 (add Map api)
     }
 }
 dependencyResolutionManagement {
@@ -16,6 +22,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+<<<<<<< HEAD
+=======
+        maven {
+            url "https://devrepo.kakao.com/nexus/repository/kakaomap-releases/"
+        }
+>>>>>>> 68801c8 (add Map api)
     }
 }
 
