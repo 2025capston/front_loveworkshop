@@ -6,13 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.romancesample.api.ApiClient;
+import com.example.romancesample.api.ReportApi;
+import com.example.romancesample.model.ReportRequest;
+import com.example.romancesample.model.ReportResponse;
+
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BadPeople extends BaseActivity {
 
@@ -41,6 +51,9 @@ public class BadPeople extends BaseActivity {
                 btnOther
         );
 
+        // Retrofit ReportApi 생성
+        ReportApi reportApi = ApiClient.getClient().create(ReportApi.class);
+
         // 각 버튼에 클릭 리스너 추가
         for (Button button : reportButtons) {
             button.setOnClickListener(v -> {
@@ -58,6 +71,50 @@ public class BadPeople extends BaseActivity {
                 } else {
                     editTextOtherReason.setVisibility(View.GONE);
                 }
+
+                // 선택된 사유 문자열 가져오기
+                String reason;
+                if (button == btnOther) {
+                    reason = editTextOtherReason.getText().toString().trim();
+                    if (reason.isEmpty()) {
+                        editTextOtherReason.setError("신고 사유를 입력하세요");
+                        return;
+                    }
+                } else {
+                    reason = button.getText().toString();
+                }
+
+                // 신고 요청 객체 생성
+                ReportRequest reportRequest = new ReportRequest(
+                        12, // requestId (실제 값으로 바꿀 것)
+                        3,  // reporterUserId (로그인 사용자 ID로 바꿀 것)
+                        reason,
+                        reason // 상세 내용 동일하게 넣음, 필요 시 다른 입력값 사용
+                );
+
+                // 서버에 신고 등록 요청
+                reportApi.createReport(reportRequest).enqueue(new Callback<ReportResponse>() {
+                    @Override
+                    public void onResponse(Call<ReportResponse> call, Response<ReportResponse> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(BadPeople.this,
+                                    "신고 등록 성공: " + response.body().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(BadPeople.this,
+                                    "신고 등록 실패, 상태 코드: " + response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ReportResponse> call, Throwable t) {
+                        t.printStackTrace();
+                        Toast.makeText(BadPeople.this,
+                                "신고 요청 중 오류 발생",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
             });
         }
 

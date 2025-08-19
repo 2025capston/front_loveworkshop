@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,11 +43,13 @@ import java.util.concurrent.Executors;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CameraActivity extends AppCompatActivity {
+
     private PreviewView previewView;
     private Button captureButton;
     private TextView directionText;
@@ -66,10 +66,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    private enum FaceStage {
-        LEFT, RIGHT, FRONT
-    }
-
+    private enum FaceStage { LEFT, RIGHT, FRONT }
     private FaceStage currentStage = FaceStage.LEFT;
     private static final int REQUEST_CAMERA_PERMISSION = 1001;
 
@@ -111,7 +108,6 @@ public class CameraActivity extends AppCompatActivity {
         cameraProviderFuture.addListener(() -> {
             try {
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
-
                 Preview preview = new Preview.Builder().build();
                 CameraSelector cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA;
 
@@ -125,12 +121,12 @@ public class CameraActivity extends AppCompatActivity {
                     @SuppressWarnings("UnsafeOptInUsageError")
                     Image mediaImage = imageProxy.getImage();
                     if (mediaImage != null) {
-                        InputImage image = InputImage.fromMediaImage(mediaImage, imageProxy.getImageInfo().getRotationDegrees());
+                        InputImage image = InputImage.fromMediaImage(mediaImage,
+                                imageProxy.getImageInfo().getRotationDegrees());
                         detector.process(image)
                                 .addOnSuccessListener(faces -> {
                                     if (!faces.isEmpty()) {
                                         Face face = faces.get(0);
-
                                         float yaw = face.getHeadEulerAngleY();
                                         float roll = face.getHeadEulerAngleZ();
 
@@ -194,7 +190,9 @@ public class CameraActivity extends AppCompatActivity {
         contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/CameraX-Faces");
 
         ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions
-                .Builder(getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                .Builder(getContentResolver(),
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                contentValues)
                 .build();
 
         imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this),
@@ -203,11 +201,8 @@ public class CameraActivity extends AppCompatActivity {
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                         Uri savedUri = outputFileResults.getSavedUri();
                         Log.d("CameraX", tag + " face saved: " + savedUri);
-                        if (tag.equals("left")) {
-                            leftUri = savedUri;
-                        } else if (tag.equals("right")) {
-                            rightUri = savedUri;
-                        }
+                        if (tag.equals("left")) leftUri = savedUri;
+                        else if (tag.equals("right")) rightUri = savedUri;
                     }
 
                     @Override
@@ -217,7 +212,6 @@ public class CameraActivity extends AppCompatActivity {
                 });
     }
 
-
     private void takePhoto() {
         String filename = "face_front_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".jpg";
         ContentValues contentValues = new ContentValues();
@@ -226,7 +220,9 @@ public class CameraActivity extends AppCompatActivity {
         contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/CameraX-Faces");
 
         ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions
-                .Builder(getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                .Builder(getContentResolver(),
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                contentValues)
                 .build();
 
         imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this),
@@ -236,10 +232,12 @@ public class CameraActivity extends AppCompatActivity {
                         frontUri = outputFileResults.getSavedUri();
                         Log.d("CameraX", "Saved front image URI: " + frontUri);
 
-                        // front만 서버 업로드
-                        uploadFaceImageToServer(frontUri);
+                        // left, right, front 모두 업로드
+                        if (leftUri != null && rightUri != null && frontUri != null) {
+                            uploadAllFacesToServer(frontUri, leftUri, rightUri, "1"); // userId는 실제 로그인 정보 사용
+                        }
 
-                        // 다음 액티비티로 left, right, front 전달
+                        // 다음 액티비티로 Uri 전달
                         Intent intent = new Intent(CameraActivity.this, charming_point.class);
                         intent.putExtra("leftUri", leftUri.toString());
                         intent.putExtra("rightUri", rightUri.toString());
@@ -253,64 +251,3 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void onError(@NonNull ImageCaptureException exception) {
                         Toast.makeText(CameraActivity.this, "정면 사진 저장 실패: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.e("CameraX", "Photo capture failed", exception);
-                    }
-                });
-    }
-
-
-    private void uploadFaceImageToServer(Uri uri) {
-        try {
-            File file = new File(FileUtils.getPath(this, uri));
-            RequestBody requestFile = RequestBody.create(file, MediaType.parse("image/jpeg"));
-            MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-
-            // userId 예시 - 실제 앱에서는 로그인 정보 등에서 받아와야 함
-            RequestBody userIdBody = RequestBody.create("1", MediaType.parse("text/plain"));
-
-            FaceApiService api = ApiClient.getClient().create(FaceApiService.class);
-            Call<Void> call = api.registerFace(userIdBody, body);
-
-            call.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (response.isSuccessful()) {
-                        Log.d("CameraX", "얼굴 등록 성공");
-                    } else {
-                        Log.e("CameraX", "얼굴 등록 실패: " + response.code());
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    Log.e("CameraX", "얼굴 등록 네트워크 오류", t);
-                }
-            });
-
-        } catch (Exception e) {
-            Log.e("CameraX", "파일 업로드 실패", e);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CAMERA_PERMISSION) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startCamera();
-            } else {
-                Toast.makeText(this, "카메라 권한이 필요합니다", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        cameraExecutor.shutdown();
-        detector.close();
-    }
-}
