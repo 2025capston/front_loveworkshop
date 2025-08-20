@@ -40,7 +40,7 @@ public class After_dday extends BaseActivity {
         okMeetHimBtn = findViewById(R.id.ok_meethim);
         heIsBasBtn = findViewById(R.id.heisbas);
 
-        // ✅ "만남 성사" 버튼 클릭
+
         okMeetHimBtn.setOnClickListener(v -> {
             ApiService apiService = ApiClient.getClient().create(ApiService.class);
             MeetingResultRequestDTO request = new MeetingResultRequestDTO("SUCCESS");
@@ -49,8 +49,7 @@ public class After_dday extends BaseActivity {
                 @Override
                 public void onResponse(Call<MeetingResultResponseDTO> call, Response<MeetingResultResponseDTO> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        // 서버 응답이 성공적일 때
-                        Intent intent = new Intent(After_dday.this, LastMission.class);
+                        Intent intent = new Intent(After_dday.this, meet_end.class);
                         startActivity(intent);
                     } else {
                         // 서버에서 에러 응답 온 경우 처리
@@ -64,7 +63,7 @@ public class After_dday extends BaseActivity {
             });
         });
 
-        // ✅ "만남 안됨" 버튼 클릭
+
         heIsBasBtn.setOnClickListener(v -> {
             ApiService apiService = ApiClient.getClient().create(ApiService.class);
             MeetingResultRequestDTO request = new MeetingResultRequestDTO("FAIL");

@@ -1,6 +1,5 @@
 package com.example.romancesample.api;
 
-<<<<<<< HEAD
 import com.example.romancesample.model.IdealMatchListResponse;
 import com.example.romancesample.model.UserDTO;
 import com.example.romancesample.model.UserProfileDTO;
@@ -18,16 +17,7 @@ import okhttp3.ResponseBody;
 import retrofit2.http.Multipart;
 import retrofit2.http.GET;
 import retrofit2.http.Part;
-=======
-import com.example.romancesample.model.UserDTO;
-import com.example.romancesample.model.UserRegisterRequest;
 
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-
->>>>>>> origin/master
 
 
 public interface UserApi {
@@ -40,7 +30,6 @@ public interface UserApi {
     @POST("/auth/verify")
     Call<Boolean> verifyCode(@Query("email") String email, @Query("code") String code);
 
-<<<<<<< HEAD
     //api 명세서 4번
     @Multipart
     @POST("/api/ideal/register")
@@ -68,10 +57,4 @@ public interface UserApi {
     // api 명세서 매칭 이후 process
 
     Call<Void> sendAuthEmail(String email);
-
-
-=======
-
-    Call<Void> sendAuthEmail(String email);
->>>>>>> origin/master
 }
