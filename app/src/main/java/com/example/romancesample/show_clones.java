@@ -3,7 +3,10 @@ package com.example.romancesample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
+<<<<<<< HEAD
 import android.widget.Toast;
+=======
+>>>>>>> origin/master
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -32,6 +35,7 @@ public class show_clones extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_clones);
 
+
         // 하단 네비게이션
         setupBottomNavigation(R.id.nav_luv);
 
@@ -46,12 +50,10 @@ public class show_clones extends BaseActivity {
         ListView listView = findViewById(R.id.clone_listview);
         adapter = new CloneAdapter(this, cloneList);
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(show_clones.this, show_matchPeople.class);
             startActivity(intent);
         });
-
         // Retrofit 초기화
         userApi = RetrofitClient.getUserApi();
 

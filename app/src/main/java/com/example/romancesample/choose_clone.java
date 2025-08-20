@@ -104,6 +104,7 @@ public class choose_clone extends AppCompatActivity {
                 textView.setText("현재 값: " + value);
                 olderThan = value;
                 youngerThan = value + 10;
+
             }
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
@@ -124,6 +125,7 @@ public class choose_clone extends AppCompatActivity {
         gotomatch.setOnClickListener(v -> {
             Intent intent = new Intent(choose_clone.this, wait_match.class);
             if (selectedImageUri != null ) {
+
                 intent.putExtra("image_uri", selectedImageUri.toString());
             }
             startActivity(intent);

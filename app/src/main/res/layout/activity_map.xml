@@ -24,7 +24,6 @@
         android:visibility="gone"/>
 
     <!-- 지도 -->
-
     <com.kakao.vectormap.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
