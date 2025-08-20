@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:clickable="true"
+    android:background="#FBFBED"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".match_complete">
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/btnbtn"
+        android:fontFamily="@font/scd5"
+        android:padding="5dp"
+        android:text="만남이 성사되었어요"
+        android:textAlignment="center"
+        android:textColor="#7C5147"
+        android:textSize="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/scd5"
+        android:text="상대방이 일정을 선택할 때까지\n기다려 주세요"
+        android:textAlignment="center"
+        android:textColor="#7C5147"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView38" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginTop="224dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/m_complete" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/bottom_nav_container"
+        android:name="com.example.romancesample.fragment_bottom_navigation"
+        android:layout_width="0dp"
+        android:clickable="false"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBED"
+
+    tools:context=".choose_place">
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="105dp"
+        android:fontFamily="@font/scd6"
+        android:text="만남 선호 장소"
+        android:textSize="27dp"
+        android:textColor="#7C5147"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/locationEditText2"
+        android:layout_width="258dp"
+
+        android:layout_height="38dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/whitebox"
+        android:ems="10"
+        android:focusable="false"
+
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationEditText1" />
+
+    <EditText
+        android:id="@+id/locationEditText3"
+        android:layout_width="258dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/whitebox"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/locationEditText2"
+        app:layout_constraintStart_toEndOf="@+id/textView42"
+        app:layout_constraintTop_toBottomOf="@+id/locationEditText2" />
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="20dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+
+        android:background="@drawable/pinkbox"
+        android:fontFamily="@font/scd5"
+        android:text="3"
+        android:textAlignment="center"
+        android:textColor="@color/custom_brown"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/locationEditText3"
+        app:layout_constraintTop_toTopOf="@+id/locationEditText3" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="20dp"
+        android:layout_height="38dp"
+        android:background="@drawable/pinkbox"
+        android:fontFamily="@font/scd5"
+        android:text="2"
+        android:gravity="center"
+
+        android:textAlignment="center"
+        android:textColor="@color/custom_brown"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/locationEditText2"
+        app:layout_constraintTop_toTopOf="@+id/locationEditText2" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="20dp"
+        android:gravity="center"
+        android:layout_height="38dp"
+        android:background="@drawable/pinkbox"
+        android:fontFamily="@font/scd5"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="@color/custom_brown"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/locationEditText1"
+        app:layout_constraintTop_toTopOf="@+id/locationEditText1" />
+
+    <EditText
+        android:id="@+id/locationEditText1"
+        android:layout_width="258dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/whitebox"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_place"
+        android:background="@drawable/no_btn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="보내기"
+        android:textSize="18dp"
+        android:fontFamily="@font/scd5"
+        android:textColor="@color/custom_brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationEditText3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
