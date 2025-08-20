@@ -2,42 +2,81 @@ package com.example.romancesample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+import com.example.romancesample.api.ApiClient;
+import com.example.romancesample.api.ApiService;
+import com.example.romancesample.model.MatchKeepStatusRequestDTO;
+import com.example.romancesample.model.MatchKeepStatusResponseDTO;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class yes_or_no extends AppCompatActivity {
+
+    private Button btnKeepMatching;
+    private Button btnCancelMatching;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_yes_or_no);
 
-        // Get references to the buttons
-        Button btnKeepMatching = findViewById(R.id.inginging);
-        Button btnCancelMatching = findViewById(R.id.idontlikehim);
+        btnKeepMatching = findViewById(R.id.inginging);
+        btnCancelMatching = findViewById(R.id.idontlikehim);
 
-        // Set OnClickListener for "매칭 유지" button (keep matching)
+        // ✅ "매칭 유지" 버튼 클릭
         btnKeepMatching.setOnClickListener(v -> {
-            // Start LastMissionActivity when "매칭 유지" button is clicked
-            Intent intent = new Intent(yes_or_no.this, LastMission.class);
-            startActivity(intent);
+            ApiService apiService = ApiClient.getClient().create(ApiService.class);
+            MatchKeepStatusRequestDTO request = new MatchKeepStatusRequestDTO("KEEP");
+
+            apiService.updateMatchKeepStatus(10, request).enqueue(new Callback<MatchKeepStatusResponseDTO>() {
+                @Override
+                public void onResponse(Call<MatchKeepStatusResponseDTO> call, Response<MatchKeepStatusResponseDTO> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        // 서버 응답 성공 시 LastMission 화면 이동
+                        Intent intent = new Intent(yes_or_no.this, LastMission.class);
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MatchKeepStatusResponseDTO> call, Throwable t) {
+                    // 네트워크 실패 처리
+                }
+            });
         });
 
-        // Set OnClickListener for "매칭 해지" button (cancel matching)
+        // ✅ "매칭 해지" 버튼 클릭
         btnCancelMatching.setOnClickListener(v -> {
-            // Start BadPeopleActivity when "매칭 해지" button is clicked
-            Intent intent = new Intent(yes_or_no.this, BadPeople.class);
-            startActivity(intent);
+            ApiService apiService = ApiClient.getClient().create(ApiService.class);
+            MatchKeepStatusRequestDTO request = new MatchKeepStatusRequestDTO("END");
+
+            apiService.updateMatchKeepStatus(10, request).enqueue(new Callback<MatchKeepStatusResponseDTO>() {
+                @Override
+                public void onResponse(Call<MatchKeepStatusResponseDTO> call, Response<MatchKeepStatusResponseDTO> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        // 서버 응답 성공 시 BadPeople 화면 이동
+                        Intent intent = new Intent(yes_or_no.this, BadPeople.class);
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MatchKeepStatusResponseDTO> call, Throwable t) {
+                    // 네트워크 실패 처리
+                }
+            });
         });
 
-        // Set window insets for padding to avoid overlap with system bars
+        // 시스템 바 패딩 처리
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

@@ -24,16 +24,9 @@
         android:visibility="gone"/>
 
     <!-- 지도 -->
-<<<<<<< HEAD
-    <org.osmdroid.views.MapView
-        android:id="@+id/map"
-        android:layout_width="388dp"
-        android:layout_height="520dp"
-=======
     <com.kakao.vectormap.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
->>>>>>> 68801c8 (add Map api)
-        android:layout_weight="1" />
+        android:layout_height="0dp"/>
+
 </LinearLayout>

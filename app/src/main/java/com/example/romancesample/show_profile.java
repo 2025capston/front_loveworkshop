@@ -8,75 +8,131 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.romancesample.api.UserApi;
+import com.example.romancesample.model.UserProfileDTO;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import com.example.romancesample.api.RetrofitClient;
 
 public class show_profile extends AppCompatActivity {
 
     private ImageView getfromCamera;
-    private TextView takeCloneAge, takePlace;
+    private TextView takeCloneAge, takePlace, takeHeight, takeAge, takeSex;
     private EditText editCloneAge, editPlace;
     private Button button2;
+
+    private UserApi userApi;
+    private int userId = 1; // 예시, 실제 로그인 유저 ID 사용
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_profile);
 
-        // --- 이미지 처리 ---
+        // --- 뷰 초기화 ---
         getfromCamera = findViewById(R.id.getfromCamera);
-
-        MyApplication app = (MyApplication) getApplication();
-        String imageUri = app.getPhotoUri();
-
-        if (imageUri != null) {
-            Glide.with(this)
-                    .load(imageUri)
-                    .into(getfromCamera);
-        }
-
-        // --- 텍스트 수정 관련 요소 초기화 ---
         takeCloneAge = findViewById(R.id.take_cloneage);
         takePlace = findViewById(R.id.take_place);
+        takeHeight = findViewById(R.id.take_height);
+        takeAge = findViewById(R.id.take_age);
+        takeSex = findViewById(R.id.take_sex);
 
         editCloneAge = findViewById(R.id.edit_cloneage);
         editPlace = findViewById(R.id.edit_place);
-
         button2 = findViewById(R.id.button2);
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        // --- Retrofit API 초기화 ---
+        userApi = RetrofitClient.getUserApi();
+
+        // --- 서버에서 프로필 불러오기 ---
+        loadUserProfile(userId);
+
+        // --- 수정/저장 버튼 처리 ---
+        button2.setOnClickListener(v -> {
+            String currentText = button2.getText().toString();
+
+            if (currentText.equals("수정")) {
+                editCloneAge.setText(takeCloneAge.getText().toString());
+                editPlace.setText(takePlace.getText().toString());
+
+                takeCloneAge.setVisibility(View.GONE);
+                takePlace.setVisibility(View.GONE);
+                editCloneAge.setVisibility(View.VISIBLE);
+                editPlace.setVisibility(View.VISIBLE);
+
+                button2.setText("저장");
+
+            } else if (currentText.equals("저장")) {
+                saveUserProfile(userId);
+            }
+        });
+    }
+
+    // 서버 GET 호출
+    private void loadUserProfile(int userId) {
+        userApi.getProfile(userId).enqueue(new Callback<UserProfileDTO>() {
             @Override
-            public void onClick(View v) {
-                String currentText = button2.getText().toString();
+            public void onResponse(Call<UserProfileDTO> call, Response<UserProfileDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserProfileDTO profile = response.body();
 
-                if (currentText.equals("수정")) {
-                    // 기존 값 EditText에 복사
-                    editCloneAge.setText(takeCloneAge.getText().toString());
-                    editPlace.setText(takePlace.getText().toString());
+                    takeCloneAge.setText(profile.getCloneAge());
+                    takePlace.setText(profile.getPlace());
+                    takeHeight.setText(profile.getHeight() + "cm");
+                    takeAge.setText(profile.getAge() + "세");
+                    takeSex.setText(profile.getSex());
 
-                    // EditText 보이기, TextView 숨기기
-                    takeCloneAge.setVisibility(View.GONE);
-                    takePlace.setVisibility(View.GONE);
+                    if (profile.getPhotoUri() != null) {
+                        Glide.with(show_profile.this)
+                                .load(profile.getPhotoUri())
+                                .into(getfromCamera);
+                    }
+                }
+            }
 
-                    editCloneAge.setVisibility(View.VISIBLE);
-                    editPlace.setVisibility(View.VISIBLE);
+            @Override
+            public void onFailure(Call<UserProfileDTO> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
 
-                    button2.setText("저장");
+    // 서버 PUT 호출
+    private void saveUserProfile(int userId) {
+        UserProfileDTO profile = new UserProfileDTO();
+        profile.setCloneAge(editCloneAge.getText().toString());
+        profile.setPlace(editPlace.getText().toString());
 
-                } else if (currentText.equals("저장")) {
-                    // 입력값 반영
-                    takeCloneAge.setText(editCloneAge.getText().toString());
-                    takePlace.setText(editPlace.getText().toString());
+        // 기존 화면 값 그대로 반영
+        profile.setHeight(Integer.parseInt(takeHeight.getText().toString().replace("cm","")));
+        profile.setAge(Integer.parseInt(takeAge.getText().toString().replace("세","")));
+        profile.setSex(takeSex.getText().toString());
 
-                    // TextView 보이기, EditText 숨기기
+        userApi.updateProfile(userId, profile).enqueue(new Callback<UserProfileDTO>() {
+            @Override
+            public void onResponse(Call<UserProfileDTO> call, Response<UserProfileDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserProfileDTO updated = response.body();
+
+                    takeCloneAge.setText(updated.getCloneAge());
+                    takePlace.setText(updated.getPlace());
+
                     editCloneAge.setVisibility(View.GONE);
                     editPlace.setVisibility(View.GONE);
-
                     takeCloneAge.setVisibility(View.VISIBLE);
                     takePlace.setVisibility(View.VISIBLE);
 
                     button2.setText("수정");
                 }
+            }
+
+            @Override
+            public void onFailure(Call<UserProfileDTO> call, Throwable t) {
+                t.printStackTrace();
             }
         });
     }
