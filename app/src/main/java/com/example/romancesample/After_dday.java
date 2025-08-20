@@ -8,6 +8,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.romancesample.model.MeetingResultRequestDTO;
+import com.example.romancesample.model.MeetingResultResponseDTO;
+import com.example.romancesample.api.ApiClient;
+import com.example.romancesample.api.ApiService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class After_dday extends BaseActivity {
 
     private Button okMeetHimBtn;
@@ -31,14 +40,49 @@ public class After_dday extends BaseActivity {
         okMeetHimBtn = findViewById(R.id.ok_meethim);
         heIsBasBtn = findViewById(R.id.heisbas);
 
+        // ✅ "만남 성사" 버튼 클릭
         okMeetHimBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(After_dday.this, LastMission.class);
-            startActivity(intent);
+            ApiService apiService = ApiClient.getClient().create(ApiService.class);
+            MeetingResultRequestDTO request = new MeetingResultRequestDTO("SUCCESS");
+
+            apiService.updateMeetingResult(10, request).enqueue(new Callback<MeetingResultResponseDTO>() {
+                @Override
+                public void onResponse(Call<MeetingResultResponseDTO> call, Response<MeetingResultResponseDTO> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        // 서버 응답이 성공적일 때
+                        Intent intent = new Intent(After_dday.this, LastMission.class);
+                        startActivity(intent);
+                    } else {
+                        // 서버에서 에러 응답 온 경우 처리
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MeetingResultResponseDTO> call, Throwable t) {
+                    // 네트워크 실패 처리
+                }
+            });
         });
 
+        // ✅ "만남 안됨" 버튼 클릭
         heIsBasBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(After_dday.this, BadPeople.class);
-            startActivity(intent);
+            ApiService apiService = ApiClient.getClient().create(ApiService.class);
+            MeetingResultRequestDTO request = new MeetingResultRequestDTO("FAIL");
+
+            apiService.updateMeetingResult(10, request).enqueue(new Callback<MeetingResultResponseDTO>() {
+                @Override
+                public void onResponse(Call<MeetingResultResponseDTO> call, Response<MeetingResultResponseDTO> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        Intent intent = new Intent(After_dday.this, BadPeople.class);
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MeetingResultResponseDTO> call, Throwable t) {
+                    // 네트워크 실패 처리
+                }
+            });
         });
     }
 }
