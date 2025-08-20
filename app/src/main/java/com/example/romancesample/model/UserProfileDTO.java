@@ -1,12 +1,15 @@
 package com.example.romancesample.model;
 
-public class UserProfileDTO {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class UserProfileDTO implements Parcelable {
     private String cloneAge;
     private String place;
     private int height;
     private int age;
     private String sex;
-    private String setting1;
+    public String setSexualOrientation;
     private String setting2;
     private String photoUri;
 
@@ -29,13 +32,57 @@ public class UserProfileDTO {
     public String getSex() { return sex; }
     public void setSex(String sex) { this.sex = sex; }
 
-    public String getSetting1() { return setting1; }
-    public void setSetting1(String setting1) { this.setting1 = setting1; }
+    public String getSetting1() { return setSexualOrientation; }
+    public void setSetting1(String setting1) { this.setSexualOrientation = setSexualOrientation; }
 
     public String getSetting2() { return setting2; }
     public void setSetting2(String setting2) { this.setting2 = setting2; }
 
     public String getPhotoUri() { return photoUri; }
     public void setPhotoUri(String photoUri) { this.photoUri = photoUri; }
-}
 
+    // ---------------- Parcelable 구현 ----------------
+    protected UserProfileDTO(Parcel in) {
+        cloneAge = in.readString();
+        place = in.readString();
+        height = in.readInt();
+        age = in.readInt();
+        sex = in.readString();
+        setSexualOrientation = in.readString();
+        setting2 = in.readString();
+        photoUri = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(cloneAge);
+        dest.writeString(place);
+        dest.writeInt(height);
+        dest.writeInt(age);
+        dest.writeString(sex);
+        dest.writeString(setSexualOrientation);
+        dest.writeString(setting2);
+        dest.writeString(photoUri);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<UserProfileDTO> CREATOR = new Creator<UserProfileDTO>() {
+        @Override
+        public UserProfileDTO createFromParcel(Parcel in) {
+            return new UserProfileDTO(in);
+        }
+
+        @Override
+        public UserProfileDTO[] newArray(int size) {
+            return new UserProfileDTO[size];
+        }
+    };
+
+
+    public void setSexualOrientation(String selectedLuv) {
+    }
+}

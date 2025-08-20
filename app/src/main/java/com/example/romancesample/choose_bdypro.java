@@ -7,20 +7,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.romancesample.model.UserProfileDTO;
+
 public class choose_bdypro extends AppCompatActivity {
-    SelectionData selectionData;
+    UserProfileDTO profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_choose_bdypro);
 
-        // 이전 페이지에서 selectionData 받아오기
-        selectionData = (SelectionData) getIntent().getSerializableExtra("selectionData");
+        // 이전 페이지에서 전달받은 DTO
+        profile = getIntent().getParcelableExtra("profile");
+        if (profile == null) {
+            profile = new UserProfileDTO();
+        }
 
         ImageView next = findViewById(R.id.next2);
         EditText heightInput = findViewById(R.id.editTextNumber2);
@@ -36,15 +39,15 @@ public class choose_bdypro extends AppCompatActivity {
                 }
 
                 try {
-                    selectionData.height = Integer.parseInt(heightStr);
+                    profile.setHeight(Integer.parseInt(heightStr));  // DTO에 키 저장
                 } catch (NumberFormatException e) {
                     Toast.makeText(choose_bdypro.this, "숫자로 입력해주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // 다음 페이지로 selectionData 넘기기
+                // 다음 페이지로 DTO 전달
                 Intent intent = new Intent(choose_bdypro.this, choose_home.class);
-                intent.putExtra("selectionData", selectionData);
+                intent.putExtra("profile", profile);
                 startActivity(intent);
             }
         });

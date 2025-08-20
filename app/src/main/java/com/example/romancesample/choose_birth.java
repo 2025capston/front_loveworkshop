@@ -8,25 +8,28 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.romancesample.model.UserProfileDTO;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class choose_birth extends AppCompatActivity {
-    SelectionData selectionData;
+    UserProfileDTO profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_choose_birth);
 
-        // selectionData 받기
-        selectionData = (SelectionData) getIntent().getSerializableExtra("selectionData");
+        // 이전 Activity에서 전달받은 DTO
+        profile = getIntent().getParcelableExtra("profile");
+        if(profile == null) {
+            profile = new UserProfileDTO();
+        }
 
         Button birthButton = findViewById(R.id.city);
         birthButton.setOnClickListener(v -> showYearPickerDialog(birthButton));
@@ -41,10 +44,11 @@ public class choose_birth extends AppCompatActivity {
 
             int birthYear = Integer.parseInt(yearStr);
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            selectionData.age = currentYear - birthYear;
+            profile.setAge(currentYear - birthYear);  // 나이 계산해서 DTO에 저장
 
+            // 다음 Activity로 DTO 전달
             Intent intent = new Intent(choose_birth.this, choose_bdypro.class);
-            intent.putExtra("selectionData", selectionData);
+            intent.putExtra("profile", profile);
             startActivity(intent);
         });
     }

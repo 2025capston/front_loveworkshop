@@ -1,43 +1,52 @@
 package com.example.romancesample;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.romancesample.model.UserProfileDTO;
+
 public class choose_luv extends AppCompatActivity {
     String selectedLuv = null;
-
     AppCompatButton heteroBtn, homoBtn, biBtn;
-    AppCompatButton lastSelectedBtn = null; // 이전에 선택된 버튼
+    AppCompatButton lastSelectedBtn = null;
+
+    UserProfileDTO profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_luv);
 
-        // selectionData 받아오기
+        // 이전 페이지에서 DTO 받기
+        profile = getIntent().getParcelableExtra("profile");
+        if (profile == null) {
+            profile = new UserProfileDTO();
+        }
 
-        // 버튼들 연결
+        // 버튼 연결
         heteroBtn = findViewById(R.id.hetero);
         homoBtn = findViewById(R.id.homo);
         biBtn = findViewById(R.id.bi);
 
         heteroBtn.setOnClickListener(v -> {
             selectedLuv = "이성애자";
+            profile.setSexualOrientation(selectedLuv);
             updateTextColor(heteroBtn);
         });
 
         homoBtn.setOnClickListener(v -> {
             selectedLuv = "동성애자";
+            profile.setSexualOrientation(selectedLuv);
             updateTextColor(homoBtn);
         });
 
         biBtn.setOnClickListener(v -> {
             selectedLuv = "양성애자";
+            profile.setSexualOrientation(selectedLuv);
             updateTextColor(biBtn);
         });
 
@@ -48,24 +57,21 @@ public class choose_luv extends AppCompatActivity {
                 return;
             }
 
-
+            // 다음 페이지로 DTO 전달
             Intent intent = new Intent(choose_luv.this, check_camera.class);
+            intent.putExtra("profile", profile);
             startActivity(intent);
         });
     }
 
     private void updateTextColor(AppCompatButton selectedBtn) {
-        int selectedColor = getColor(R.color.button_selected_color); // 미리 정의된 선택 색상
+        int selectedColor = getColor(R.color.button_selected_color);
 
-        // 이전 선택된 버튼이 있으면 원래 색상 복원 (선택한 것만 바꿔달라고 했으니 주석 처리 가능)
         if (lastSelectedBtn != null) {
-            lastSelectedBtn.setTextColor(getResources().getColor(android.R.color.black)); // 원래 색상 (혹은 원하는 기본색)
+            lastSelectedBtn.setTextColor(getResources().getColor(android.R.color.black));
         }
 
-        // 현재 선택된 버튼 색상 변경
         selectedBtn.setTextColor(selectedColor);
-
-        // 현재 버튼을 저장
         lastSelectedBtn = selectedBtn;
     }
 }
