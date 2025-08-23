@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="159dp"
+    android:height="81dp"
+    android:viewportWidth="159"
+    android:viewportHeight="81">
+
+    <group>
+        <!-- 원형 모양을 클리핑 -->
+        <clip-path
+            android:pathData="M159 40.5C159 62.8675 123.407 81 79.5 81C35.5934 81 0 62.8675 0 40.5C0 18.1325 35.5934 0 79.5 0C123.407 0 159 18.1325 159 40.5Z" />
+
+        <group
+            android:translateX="1"
+            android:translateY="0"
+            android:pivotX="79.5"
+            android:pivotY="40.5"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:rotation="90">
+
+            <!-- 그라디언트 색상 적용된 사각형 경로 -->
+            <path
+                android:pathData="M0 0V81H159V0">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:type="linear"
+                        android:startX="65.75"
+                        android:startY="40.5"
+                        android:endX="119.25"
+                        android:endY="40.5">
+                        <item android:color="#FFFFFF" android:offset="0" />
+                        <item android:color="#FF9289" android:offset="1" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+        </group>
+
+        <!-- 외곽선 추가 -->
+        <path
+            android:pathData="M159 40.5C159 62.8675 123.407 81 79.5 81C35.5934 81 0 62.8675 0 40.5C0 18.1325 35.5934 0 79.5 0C123.407 0 159 18.1325 159 40.5Z"
+            android:strokeWidth="4"
+            android:strokeColor="#7C5147" />
+    </group>
+</vector>

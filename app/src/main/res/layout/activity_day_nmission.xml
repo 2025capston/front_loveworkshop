@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBED"
+    tools:context=".dayN_mission">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="337dp"
+        android:layout_height="223dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/mission_box"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/scd6"
+            android:paddingBottom="40dp"
+            android:text="오늘의 미션"
+            android:textAlignment="center"
+            android:textColor="@color/custom_brown"
+            android:textSize="30dp" />
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:background="@drawable/dot_line" />
+
+        <TextView
+            android:id="@+id/landom_mission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/scd5"
+            android:text="랜덤 배정될 미션 작성"
+            android:textAlignment="center"
+            android:textColor="@color/custom_brown" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D - N"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/eclipse"
+        android:textAlignment="center"
+        android:fontFamily="@font/alex"
+        android:textSize="30sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="43dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button17"
+        android:layout_width="337dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/check_btn"
+        android:fontFamily="@font/scd5"
+        android:text="상대 답안 확인하기"
+        android:textColor="@color/custom_brown"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/scd4"
+        android:text="*내 답을 등록하면 상대의 답을 확인할 수 있어요!"
+        android:textColor="#C9B4AF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button17" />
+
+    <EditText
+        android:id="@+id/mission_text"
+        android:layout_width="337dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/mission_box"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button18"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:text="등록하기"
+        android:textSize="15sp"
+        android:fontFamily="@font/scd5"
+        android:background="@drawable/register_btn"
+        android:textColor="@color/custom_brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="583dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

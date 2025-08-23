@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- 얼굴 사진 -->
+    <ImageView
+        android:id="@+id/getfromCamera"
+        android:layout_width="180dp"
+        android:layout_height="229dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="얼굴 사진"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 사진 여러 장 컨테이너 -->
+    <LinearLayout
+        android:id="@+id/photoContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/getfromCamera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 글자 영역 -->
+    <TextView
+        android:id="@+id/take_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="여성"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/photoContainer"
+        app:layout_constraintStart_toStartOf="@id/getfromCamera" />
+
+    <TextView
+        android:id="@+id/take_luv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이성애자"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/take_sex"
+        app:layout_constraintStart_toStartOf="@id/take_sex" />
+
+    <TextView
+        android:id="@+id/take_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="수유 쌍문동"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/take_luv"
+        app:layout_constraintStart_toStartOf="@id/take_luv" />
+
+    <EditText
+        android:id="@+id/edit_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="장소 입력"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/take_luv"
+        app:layout_constraintStart_toStartOf="@id/take_luv" />
+
+    <TextView
+        android:id="@+id/take_cloneage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3살 연하 7살 연상까지"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/take_place"
+        app:layout_constraintStart_toStartOf="@id/take_place" />
+
+    <EditText
+        android:id="@+id/edit_cloneage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="연령 입력"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/take_place"
+        app:layout_constraintStart_toStartOf="@id/take_place" />
+
+    <TextView
+        android:id="@+id/take_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="168cm"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/take_cloneage"
+        app:layout_constraintStart_toStartOf="@id/take_cloneage" />
+
+    <TextView
+        android:id="@+id/take_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25세"
+        android:textSize="24sp"
+        android:fontFamily="@font/scd5"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/take_height"
+        app:layout_constraintStart_toStartOf="@id/take_height" />
+
+    <!-- 하단 네비게이션 -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        app:backgroundTint="#FBE2DE"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 수정 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="수정"
+        android:textSize="20sp"
+        android:fontFamily="@font/scd5"
+        android:background="@drawable/yes_btn"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
